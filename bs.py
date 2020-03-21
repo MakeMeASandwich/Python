@@ -52,6 +52,7 @@ print(soup.find_all("a", class_="b"))
 print("=====================================================")
 print(soup.find_all("a", href="www.yahoo.com"))
 '''
+#start of code
 l = 0
 print(soup.find("div", class_="type02_bd-a"))
 div_items = soup.find_all("div", class_="type02_bd-a")
@@ -68,5 +69,5 @@ for i in div_items:
     li_price = i.find('li', class_='price_a')
     print(li_price.text)
     l = l + 1
-    if l > 30:
+    if l > 100:
         break
