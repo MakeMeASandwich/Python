@@ -10,10 +10,10 @@ import requests
 
 data = requests.get("http://www.books.com.tw/web/sys_saletopb/books/02?attribute=30&loc=act_menu_th_46_002")
 soup = BeautifulSoup(data.text, "html.parser")
-print(soup.prettify()) 
+#print(soup.prettify()) 
 
 l = 1
-print(soup.find("div", class_="type02_bd-a"))
+#print(soup.find("div", class_="type02_bd-a"))
 div_items = soup.find_all("div", class_="type02_bd-a")
 
 #for i in div_items:
@@ -27,18 +27,16 @@ for index,i in enumerate(div_items):
     ul = i.find('a')
     print(ul)
     string = str(ul)
+    
     fileName = str(index) + ".txt"
     file = open(fileName, "w+")
-    file.write(str(ul))
-    file.close
-    '''
-    if re.match("([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?", string) != None:
+    file.write(string)
+    file.close()
+    
+    if re.search("(https://www.books.com.tw/products/)[0-9]{10}[?](loc=P_0003_)[0-9]{3}", string) != None:
         print("success")
-    '''
+    else:
+        print(':(')
     l = l + 1
     if l > 10:
         break
-    
-
-
- 
